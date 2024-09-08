@@ -15,6 +15,13 @@ namespace Direcciones.Controllers
             return View(direcciones);
         }
 
+        public ActionResult Edit(int id)
+        {
+            Address direccion = contexto.Address.Where(x => x.AddressID == id).FirstOrDefault();
+
+            return View(direccion);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

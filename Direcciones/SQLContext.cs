@@ -15,7 +15,7 @@ namespace Direcciones
         }
 
         public DbSet<Address> Address { get; set; }
-        public DbSet<BuildVersion> BuildVersion { get; set; }
+        //public DbSet<BuildVersion> BuildVersion { get; set; }
 
     }
 }

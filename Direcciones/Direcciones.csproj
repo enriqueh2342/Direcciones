@@ -291,6 +291,7 @@
     <Content Include="Views\Direcciones\About.cshtml" />
     <Content Include="Views\Direcciones\Contact.cshtml" />
     <Content Include="Views\Direcciones\Index.cshtml" />
+    <Content Include="Views\Direcciones\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
