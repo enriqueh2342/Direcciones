@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Direcciones.Models.Address>
-@*@using Direcciones.Models.Address*@
+@using Direcciones.Models
 @{
     ViewBag.Title = "Home Page";
 }
@@ -15,23 +15,30 @@
             <table class="table table-striped" >
                 <thead>
                     <tr>
-                        <td>@Html.DisplayNameFor(Model => Model.City)</td>
-                        <td>@Html.DisplayNameFor(Model => Model.AddressLine1)</td>
-                        <td>@Html.DisplayNameFor(Model => Model.AddressLine2)</td>
-                        <td>@Html.DisplayNameFor(Model => Model.StateProvince)</td>
-                        <td>@Html.DisplayNameFor(Model => Model.CountryRegion)</td>
-                        <td>@Html.DisplayNameFor(Model => Model.PostalCode)</td>
-                        <td>@Html.DisplayNameFor(Model => Model.ModifiedDate)</td>
+                        <th>@Html.DisplayNameFor(Model => Model.City)</th>
+                        <th>@Html.DisplayNameFor(Model => Model.AddressLine1)</th>
+                        <th>@Html.DisplayNameFor(Model => Model.AddressLine2)</th>
+                        <th>@Html.DisplayNameFor(Model => Model.StateProvince)</th>
+                        <th>@Html.DisplayNameFor(Model => Model.CountryRegion)</th>
+                        <th>@Html.DisplayNameFor(Model => Model.PostalCode)</th>
+                        <th>@Html.DisplayNameFor(Model => Model.ModifiedDate)</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        @foreach (var item in Model)
+                        @foreach (Address item in Model)
                         {
-
+                        <tr>
+                            <td>@item.City</td>
+                            <td>@item.AddressLine1</td>
+                            <td>@item.AddressLine2</td>
+                            <td>@item.StateProvince</td>
+                            <td>@item.CountryRegion</td>
+                            <td>@item.PostalCode</td>
+                            <td>@item.ModifiedDate</td>
+                            <td><span class=""></span></td>
+                        </tr>
                         }
-                        <td></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
