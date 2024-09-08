@@ -1,23 +1,24 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Direcciones.Models;
+using Direcciones.Repositorios;
 
 namespace Direcciones.Controllers
 {
     public class DireccionesController : Controller
     {
-        private SQLContext contexto = new SQLContext();
 
+        private ICrud<Address> repositorio = new RepoAddress();
         public ActionResult Index()
         {
-            IQueryable<Address> direcciones = from a in contexto.Address orderby a.City select a;
+            IQueryable<Address> direcciones = repositorio.Get();
 
             return View(direcciones);
         }
 
         public ActionResult Edit(int id)
         {
-            Address direccion = contexto.Address.Where(x => x.AddressID == id).FirstOrDefault();
+            Address direccion = repositorio.Get(id);
 
             return View(direccion);
         }
