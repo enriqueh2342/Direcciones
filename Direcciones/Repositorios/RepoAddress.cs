@@ -1,5 +1,7 @@
 ﻿using Direcciones.Models;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Direcciones.Repositorios
 {
@@ -34,5 +36,24 @@ namespace Direcciones.Repositorios
 
             throw new System.NotImplementedException();
         }
+
+        public SelectList SelectListCity()
+        {
+            List<string> ciudades = (from a in contexto.Address orderby a.City select a.City).Distinct().ToList();
+            IQueryable resultado = ciudades.AsQueryable().Select(a => new { Valor = a, Nombre = a });
+            SelectList model = new SelectList(resultado, "Valor", "Nombre");
+
+            return model;
+        }
+
+        public SelectList SelectListStateProvince()
+        {
+            List<string> states = (from a in contexto.Address orderby a.StateProvince select a.StateProvince).Distinct().ToList();
+            IQueryable resultado = states.AsQueryable().Select(a => new { Valor = a, Nombre = a });
+            SelectList model = new SelectList(resultado, "Valor", "Nombre");
+
+            return model;
+        }
+
     }
 }

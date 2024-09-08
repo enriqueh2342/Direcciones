@@ -8,7 +8,8 @@ namespace Direcciones.Controllers
     public class DireccionesController : Controller
     {
 
-        private ICrud<Address> repositorio = new RepoAddress();
+        private RepoAddress repositorio = new RepoAddress();
+
         public ActionResult Index()
         {
             IQueryable<Address> direcciones = repositorio.Get();
@@ -19,6 +20,8 @@ namespace Direcciones.Controllers
         public ActionResult Edit(int id)
         {
             Address direccion = repositorio.Get(id);
+            ViewBag.City = repositorio.SelectListCity();
+            ViewBag.StateProvince = repositorio.SelectListCity();
 
             return View(direccion);
         }
@@ -37,22 +40,5 @@ namespace Direcciones.Controllers
             return View();
         }
 
-        //public void ValidarConexion()
-        //{
-        //    //string conexion = ConfigurationManager.ConnectionStrings["DireccionesDB"].ConnectionString;
-        //    //// Intentar abrir la conexión
-        //    //using (SqlConnection connection = new SqlConnection(conexion))
-        //    //{
-        //    //    try
-        //    //    {
-        //    //        connection.Open();
-        //    //        Console.WriteLine("La conexión a la base de datos fue exitosa.");
-        //    //    }
-        //    //    catch (SqlException ex)
-        //    //    {
-        //    //        Console.WriteLine($"Error al conectarse a la base de datos: {ex.Message}");
-        //    //    }
-        //    //}
-        //}
     }
 }
