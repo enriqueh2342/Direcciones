@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Direcciones.Models.Address>
+@*@using Direcciones.Models.Address*@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">Direcciones</h1>
+
+    </section>
+
+    <div class="row">
+        <div class="container">
+            <table class="table table-striped" >
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(Model => Model.City)</td>
+                        <td>@Html.DisplayNameFor(Model => Model.AddressLine1)</td>
+                        <td>@Html.DisplayNameFor(Model => Model.AddressLine2)</td>
+                        <td>@Html.DisplayNameFor(Model => Model.StateProvince)</td>
+                        <td>@Html.DisplayNameFor(Model => Model.CountryRegion)</td>
+                        <td>@Html.DisplayNameFor(Model => Model.PostalCode)</td>
+                        <td>@Html.DisplayNameFor(Model => Model.ModifiedDate)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (var item in Model)
+                        {
+
+                        }
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
