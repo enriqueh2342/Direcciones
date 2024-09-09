@@ -35,7 +35,7 @@
                             <td>@item.StateProvince</td>
                             <td>@item.CountryRegion</td>
                             <td>@item.PostalCode</td>
-                            <td>@item.ModifiedDate</td>
+                            <td>@item.ModifiedDate.ToShortDateString()</td>
                             <td><a href="@Url.Action("Edit", new {@id = item.AddressID})" class="btn btn-sm btn-danger">Editar</a></td>
                         </tr>
                         }

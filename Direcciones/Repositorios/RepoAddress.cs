@@ -1,4 +1,5 @@
 ﻿using Direcciones.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -53,6 +54,36 @@ namespace Direcciones.Repositorios
             SelectList model = new SelectList(resultado, "Valor", "Nombre");
 
             return model;
+        }
+
+        public List<string> StateProvinceByCity(string city, Boolean enCascada)
+        {
+            List<string> states = null;
+
+            if (enCascada)
+            {
+                states = (from a in contexto.Address where a.City == city orderby a.StateProvince select a.StateProvince).Distinct().ToList();
+                return states;
+            }
+
+            states = (from a in contexto.Address orderby a.StateProvince select a.StateProvince).Distinct().ToList();
+
+            return states;
+        }
+
+        public List<string> CityByStateProvince(string stateProvince, Boolean enCascada)
+        {
+            List<string> cities = new List<string>();
+
+            if (enCascada)
+            {
+                cities = (from a in contexto.Address where a.StateProvince == stateProvince orderby a.City select a.City).Distinct().ToList();
+                return cities;
+            }
+
+            cities = (from a in contexto.Address orderby a.City select a.City).Distinct().ToList();
+
+            return cities;
         }
 
     }
