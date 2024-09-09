@@ -10,14 +10,17 @@
 
     </section>
 
-    @*<div class="row">
-        <div class="col-md-4 pb-4">
-            <input name="limit" required class="form-control" type="number" value="" style="max-width:100%" placeholder="Límite de resultados" id="limit" />
+    <form>
+        <div class="row">
+            <div class="col-md-10 pb-4">
+                <input name="Buscador" class="form-control" value="@ViewBag.Buscador" style="max-width:100%" placeholder="Buscar por ciudad o país" id="Buscador" />
+            </div>
+            <div class="col-md-2 pb-4">
+                <button class="btn btn-primary w-100" type="submit">Buscar</button>
+            </div>
         </div>
-        <div class="col-md-4 pb-4">
-            <button class="btn btn-primary w-100" type="submit">Buscar</button>
-        </div>
-    </div>*@
+    </form>
+    
 
     <div class="row">
         <div class="container">

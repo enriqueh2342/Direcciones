@@ -31,6 +31,11 @@ namespace Direcciones.Repositorios
             Address direccion = contexto.Address.Where(x => x.AddressID == id).FirstOrDefault();
             return direccion;
         }
+        public IQueryable<Address> Get(string Buscador)
+        {
+            IQueryable<Address> direcciones = from a in contexto.Address where a.City.Contains(Buscador) || a.CountryRegion.Contains(Buscador) orderby a.City select a;
+            return direcciones.AsQueryable();
+        }
 
         public bool Update(Address modelo)
         {

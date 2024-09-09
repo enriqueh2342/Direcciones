@@ -11,10 +11,10 @@ namespace Direcciones.Controllers
 
         private RepoAddress repositorio = new RepoAddress();
 
-        public ActionResult Index()
+        public ActionResult Index(string Buscador)
         {
-            IQueryable<Address> direcciones = repositorio.Get();
-
+            IQueryable<Address> direcciones = string.IsNullOrEmpty(Buscador) ? repositorio.Get() : repositorio.Get(Buscador);
+            ViewBag.Buscador = Buscador;
             return View(direcciones);
         }
 
