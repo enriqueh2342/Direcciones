@@ -8,7 +8,7 @@ namespace Direcciones.Repositorios
         Boolean Create();
         IQueryable<T> Get();
         T Get(int id);
-        Boolean Update(int id);
+        Boolean Update(T item);
         Boolean Delete(int id);
     }
 }

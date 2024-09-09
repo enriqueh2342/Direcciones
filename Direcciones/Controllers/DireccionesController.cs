@@ -18,12 +18,30 @@ namespace Direcciones.Controllers
             return View(direcciones);
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            Address direccion = repositorio.Get(id);
-            ViewBag.City = repositorio.SelectListCity();
-            ViewBag.StateProvince = repositorio.SelectListStateProvince();
 
+            Address direccion = repositorio.Get(id);
+            ViewBag.City = repositorio.SelectListCity(direccion.City);
+            ViewBag.StateProvince = repositorio.SelectListStateProvince(direccion.StateProvince);
+
+            return View(direccion);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, string City, string StateProvince, int[] cascada)
+        {
+            Address direccion = repositorio.Get(id);
+            direccion.City = City;
+            direccion.StateProvince = StateProvince;
+            if (cascada[0] == 1)
+            {
+                direccion.CountryRegion = repositorio.setPais(City, StateProvince, direccion.CountryRegion);
+            }
+            ViewBag.City = repositorio.SelectListCity(City);
+            ViewBag.StateProvince = repositorio.SelectListStateProvince(StateProvince);
+            ViewBag.Status = repositorio.Update(direccion);
             return View(direccion);
         }
 

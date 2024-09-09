@@ -32,27 +32,35 @@ namespace Direcciones.Repositorios
             return direccion;
         }
 
-        public bool Update(int id)
+        public bool Update(Address modelo)
         {
+            try
+            {
+                modelo.ModifiedDate = DateTime.Now;
+                contexto.Entry(modelo).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                contexto.SaveChanges();
+            }
+            catch (Exception)
+            {
 
-            throw new System.NotImplementedException();
+                return false;
+            }
+            return true;
         }
 
-        public SelectList SelectListCity()
+        public SelectList SelectListCity(string city)
         {
             List<string> ciudades = (from a in contexto.Address orderby a.City select a.City).Distinct().ToList();
             IQueryable resultado = ciudades.AsQueryable().Select(a => new { Valor = a, Nombre = a });
-            SelectList model = new SelectList(resultado, "Valor", "Nombre");
-
+            SelectList model = new SelectList(resultado, "Valor", "Nombre", selectedValue: city);
             return model;
         }
 
-        public SelectList SelectListStateProvince()
+        public SelectList SelectListStateProvince(string stateProvince)
         {
             List<string> states = (from a in contexto.Address orderby a.StateProvince select a.StateProvince).Distinct().ToList();
             IQueryable resultado = states.AsQueryable().Select(a => new { Valor = a, Nombre = a });
-            SelectList model = new SelectList(resultado, "Valor", "Nombre");
-
+            SelectList model = new SelectList(resultado, "Valor", "Nombre", selectedValue: stateProvince);
             return model;
         }
 
@@ -84,6 +92,13 @@ namespace Direcciones.Repositorios
             cities = (from a in contexto.Address orderby a.City select a.City).Distinct().ToList();
 
             return cities;
+        }
+
+        public string setPais(string city, string stateProvince, string countryRegion)
+        {
+            Address direccion = new Address();
+            direccion = contexto.Address.Where(x => x.City == city && x.StateProvince == stateProvince).FirstOrDefault();
+            return direccion == null ? countryRegion : direccion.CountryRegion;
         }
 
     }

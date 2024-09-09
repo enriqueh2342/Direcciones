@@ -10,9 +10,18 @@
 
     </section>
 
+    @*<div class="row">
+        <div class="col-md-4 pb-4">
+            <input name="limit" required class="form-control" type="number" value="" style="max-width:100%" placeholder="Límite de resultados" id="limit" />
+        </div>
+        <div class="col-md-4 pb-4">
+            <button class="btn btn-primary w-100" type="submit">Buscar</button>
+        </div>
+    </div>*@
+
     <div class="row">
         <div class="container">
-            <table class="table table-striped" >
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>@Html.DisplayNameFor(Model => Model.City)</th>
@@ -26,8 +35,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                        @foreach (Address item in Model)
-                        {
+                    @foreach (Address item in Model)
+                    {
                         <tr>
                             <td>@item.City</td>
                             <td>@item.AddressLine1</td>
@@ -38,7 +47,7 @@
                             <td>@item.ModifiedDate.ToShortDateString()</td>
                             <td><a href="@Url.Action("Edit", new {@id = item.AddressID})" class="btn btn-sm btn-danger">Editar</a></td>
                         </tr>
-                        }
+                    }
                 </tbody>
             </table>
         </div>
